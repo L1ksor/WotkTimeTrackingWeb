@@ -1,8 +1,6 @@
 ﻿using Domain;
-using Models.Response;
 using Persistance;
 using Services.Models;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -40,6 +38,15 @@ namespace Services
         {
             var project = await _projectRepository.GetByCodeAsync(code, cancellationToken);
             return project != null ? MapToResponse(project) : null;
+
+            //var project = new Project
+            //{
+            //    Code = "test",
+            //    Name = "Norbit",
+            //    IsActive = true
+            //};
+            // return project != null ? MapToResponse(project) : null;
+
         }
 
         private static ProjectResponse MapToResponse(Project project) => new(
