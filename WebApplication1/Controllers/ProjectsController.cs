@@ -6,7 +6,7 @@ namespace WebApplication1.Controllers;
 
 
 [ApiController]
-[Route("api/project")]
+[Route("api/projects")]
 public class ProjectsController : ControllerBase
 {
     private readonly IProjectService _projectService;
@@ -16,15 +16,15 @@ public class ProjectsController : ControllerBase
         _projectService = projectService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ProjectResponse>> GetByCodeAsync([FromQuery] string code, CancellationToken cancellationToken)
+    [HttpGet("{code}")]
+    public async Task<ActionResult<ProjectResponse>> GetByCodeAsync(string code, CancellationToken cancellationToken)
     {
         var response = await _projectService.GetByCodeAsync(code, cancellationToken);
         return Ok(response);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ProjectResponse>> CreateAsync([FromQuery] CreateProjectRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<ProjectResponse>> CreateAsync([FromBody] CreateProjectRequest request, CancellationToken cancellationToken)
     {
         var respnse = await _projectService.CreateAsync(request, cancellationToken);
         return Ok(respnse);

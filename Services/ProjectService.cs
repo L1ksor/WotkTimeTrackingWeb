@@ -36,16 +36,16 @@ namespace Services
 
         public async Task<ProjectResponse?> GetByCodeAsync(string code, CancellationToken cancellationToken = default)
         {
-            var project = await _projectRepository.GetByCodeAsync(code, cancellationToken);
-            return project != null ? MapToResponse(project) : null;
+            //var project = await _projectRepository.GetByCodeAsync(code, cancellationToken);
+            //return project != null ? MapToResponse(project) : null;
 
-            //var project = new Project
-            //{
-            //    Code = "test",
-            //    Name = "Norbit",
-            //    IsActive = true
-            //};
-            // return project != null ? MapToResponse(project) : null;
+            var project = new Project
+            {
+                Code = "test",
+                Name = "Norbit",
+                IsActive = true
+            };
+            return project != null ? MapToResponse(project) : null;
 
         }
 
